@@ -2,11 +2,11 @@ import psycopg2
 
 from config import config
 from data.classes import DBManager
-from data.funcs import create_database, get_vac_data, save_data_to_database
+from data.functions import create_database, get_vac_data, save_data_to_database
 
 
 def main():
-    companies_ids = [
+    employer_ids = [
         '1740',  # Яндекс
         '15478',  # VK
         '64174',  # 2ГИС
@@ -15,14 +15,14 @@ def main():
         '84585',  # Avito
         '3776',  # MTC
         '1272486',  # СберМаркет
-        '3125',  # QIWI
+        '1942330',  # Пятерочка
         '1122462'  # Skyeng
     ]
     params = config()
     new_list_com = []
     new_list_vac = []
 
-    get_vac_data('http://api.hh.ru/vacancies', companies_ids, new_list_com, new_list_vac)
+    get_vac_data('http://api.hh.ru/vacancies', employer_ids, new_list_com, new_list_vac)
     create_database('hhru', params)
     save_data_to_database(new_list_vac, new_list_com, 'hhru', params)
     conn = psycopg2.connect(dbname='hhru', **params)
