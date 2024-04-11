@@ -1,8 +1,8 @@
 import psycopg2
 
 from config import config
-from data.classes import DBManager
-from data.functions import create_database, get_vac_data, save_data_to_database
+from src.classes import DBManager
+from src.functions import create_database, get_vac_data, save_data_to_database
 
 
 def main():
